@@ -7,9 +7,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="OOP_JavaFX_Example" />
+        <module name="abed_mostfa_PROJECT" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="abed_mostfa_PROJECT" target="19" />
       <module name="OOP_JavaFX_Example" target="19" />
     </bytecodeTargetLevel>
   </component>
