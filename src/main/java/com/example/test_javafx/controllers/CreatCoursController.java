@@ -73,11 +73,8 @@ public class CreatCoursController implements Initializable  {
                 }else {
                     dataModel.addCourses(course);
 
-                    dataModel.getTeatchers().get(dataModel.getIndexByUsername(teacherAssmint.getText())).addCourse(coursName.getText());
-                    ArrayList<String> coursess = dataModel.getTeatchers().get(dataModel.getIndexByUsername(teacherAssmint.getText())).getCourse();
-                    for (int i = 0; i < coursess.size(); i++) {
-                        System.out.println(coursess.get(i));
-                    }
+                    dataModel.getTeatchers().get(dataModel.getIndexByUsername(teacherAssmint.getText())).addCourse(DataModel.getCourseByname(coursName.getText()));
+
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setHeaderText("The teatcher has been added successfully");
                     alert.setTitle("Done");

@@ -47,7 +47,12 @@ public class CreatLectuerController implements Initializable {
 
 
     public void initialize(URL url, ResourceBundle rb) {
-    list.getItems().addAll(dataModel.getTeatchers().get(dataModel.getIndexByUsername(dataModel.getWhoTeatcher())).getCourse());
+        ArrayList<String> courseforTeatcher = new ArrayList<String>();
+        for(Course s : DataModel.getTeatcherByUsername(dataModel.getWhoTeatcher()).getCourse()){
+            courseforTeatcher.add(s.getCourseName());
+
+        }
+    list.getItems().addAll(courseforTeatcher);
     list.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
         @Override
         public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
@@ -59,6 +64,8 @@ public class CreatLectuerController implements Initializable {
                 public void creatLectuer(ActionEvent actionEvent) {
         //(String topic, String classRoom, LocalDateTime dateTime,String userName,String coursName)
         Lecture lecture = new Lecture(topic.getText(),classRoom.getText(),userName.getText(),courseNameSelected);
-           dataModel.getCourses().get(dataModel.getindexCourseByname(courseNameSelected)).addLecture(lecture);
+           dataModel.getLecture().add(lecture);
+           dataModel.getCourseByname(courseNameSelected).addLecture(lecture);
+           dataModel.saveLectures();
     }
 }

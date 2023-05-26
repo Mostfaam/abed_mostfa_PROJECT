@@ -9,7 +9,7 @@ public class Lecture {
     private String topic;
     private String classRoom;
     private Date dateTime = new Date();
-    private List<Student> studentsAttendance;
+    private ArrayList<String> studentsAttendance;
     private String userName;
     private String coursName;
  String date ;
@@ -23,7 +23,16 @@ public class Lecture {
         date = dateTime.toString();
     }
 
+    public Lecture() {
 
+    }
+
+    @Override
+    public String toString() {
+//        topic,classRoom,userName,couseName
+
+        return this.topic+","+ this.classRoom+","+this.userName+","+this.coursName;
+          }
 
     public String getUserName() {
         return userName;
@@ -45,11 +54,11 @@ public class Lecture {
         return dateTime;
     }
 
-    public List<Student> getStudentsAttendance() {
+    public ArrayList<String> getStudentsAttendance() {
         return studentsAttendance;
     }
 
-    public void addStudentAttendance(Student student) {
+    public void addStudentAttendance(String student) {
         studentsAttendance.add(student);
     }
 

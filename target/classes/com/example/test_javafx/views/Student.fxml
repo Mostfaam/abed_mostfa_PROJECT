@@ -44,7 +44,7 @@
             <TextField fx:id="gpa" prefHeight="32.0" prefWidth="203.0" promptText="Enter Student GPA" GridPane.rowIndex="2" />
             <TextField fx:id="phone" prefHeight="31.0" prefWidth="203.0" promptText="Enter Student Phone" GridPane.rowIndex="3" />
             <TextField fx:id="address" prefHeight="33.0" prefWidth="190.0" promptText="Enter Student Adress" GridPane.rowIndex="4" />
-            <ComboBox fx:id="select" prefHeight="26.0" prefWidth="175.0" promptText="Select course" GridPane.rowIndex="5" />
+            <ComboBox fx:id="comboBoxForCourse" prefHeight="26.0" prefWidth="175.0" promptText="Select course" GridPane.rowIndex="5" />
          </children>
       </GridPane>
       <Button layoutX="700.0" layoutY="36.0" mnemonicParsing="false" onAction="#onBack" text="Back">
@@ -62,13 +62,12 @@
             <Font name="Times New Roman" size="18.0" />
          </font>
       </Button>
-      <TableView fx:id="table" layoutX="238.0" layoutY="89.0" prefHeight="414.0" prefWidth="560.0">
+      <TableView fx:id="table" layoutX="238.0" layoutY="90.0" prefHeight="413.0" prefWidth="560.0">
          <columns>
-            <TableColumn fx:id="nameTa" minWidth="30.0" prefWidth="152.79998779296875" text="name" />
-            <TableColumn fx:id="universityId" minWidth="30.0" prefWidth="96.7999267578125" text="ID" />
-            <TableColumn fx:id="gpaTa" minWidth="30.0" prefWidth="92.79995727539062" text="GPA" />
-            <TableColumn fx:id="phoneNumber" minWidth="30.0" prefWidth="113.60003662109375" text="Phone" />
-            <TableColumn fx:id="cource" prefWidth="105.5999633789063" text="cource" />
+            <TableColumn fx:id="nameTa" minWidth="30.0" prefWidth="169.0" text="name" />
+            <TableColumn fx:id="universityId" minWidth="30.0" prefWidth="151.0" text="ID" />
+            <TableColumn fx:id="gpaTa" minWidth="30.0" prefWidth="81.0" text="GPA" />
+            <TableColumn fx:id="phoneNumber" minWidth="30.0" prefWidth="158.0" text="Phone" />
          </columns>
       </TableView>
    </children>

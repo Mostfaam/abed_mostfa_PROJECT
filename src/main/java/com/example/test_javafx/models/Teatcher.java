@@ -3,7 +3,7 @@ package com.example.test_javafx.models;
 import java.util.ArrayList;
 
 public class Teatcher extends User {
-    private ArrayList<String> course = new ArrayList<String>();
+    private ArrayList<Course> course = new ArrayList<Course>();
     private String phone;
     private String name;
 
@@ -19,10 +19,27 @@ public class Teatcher extends User {
     }
 
     public String toStringCsv() {
-        return this.name+","+this.getUsername()+","+this.getPassword()+","+this.phone;
+         String toString = this.name+","+this.getUsername()+","+this.getPassword()+","+this.phone;
+        String stString="";
+        for (Course course1 : course){
+            stString+=course1.getCourseName()+";";
+        }
+       return toString+=","+stString;
+    }
+public void csvToArrays(String courseName){
+        String [] courseName1 = courseName.split(";");
+
+
+
+
+    for (String ss: courseName1){
+
+        Course course =DataModel.getCourseByname(ss);
+        this.addCourse(course);
     }
 
-    public ArrayList<String> getCourse() {
+}
+    public ArrayList<Course> getCourse() {
         return course;
     }
 
@@ -42,7 +59,7 @@ public class Teatcher extends User {
         this.phone = phone;
     }
 
-    public void addCourse(String course) {
+    public void addCourse(Course course) {
         this.course.add(course) ;
     }
 

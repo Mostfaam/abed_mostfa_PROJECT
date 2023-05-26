@@ -4,35 +4,75 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Course {
+
     private String courseName;
 private  String discribtion;
     private String textbook;
     private String instructor;
     private String classRoom;
     private String teatcherAssiment;
-    private List<Lecture> lectures =new ArrayList<Lecture>();
+    private ArrayList<Lecture> lectures =new ArrayList<Lecture>();
     private ArrayList<Student> students=new ArrayList<Student>();
 
     //name,subject,textbook,teatcher,classroom
-    public Course(String courseName, String discribtion, String textbook, String instructor,String teatcherAssiment, String virtualRoom, ArrayList<Lecture> lectures) {
+    public Course(String courseName, String discribtion, String textbook,
+                  String instructor,String teatcherAssiment, String virtualRoom) {
         this.courseName = courseName;
         this.textbook = textbook;
         this.instructor = instructor;
         this.teatcherAssiment=teatcherAssiment;
         this.classRoom = virtualRoom;
         this.discribtion= discribtion;
-        this.lectures= lectures;
+
+        }
+
+    public Course() {
 
     }
-    public String toStringCsvCourse() {
-        String toString = this.courseName + "," + this.discribtion + "," + this.textbook + "," + this.instructor + "," + this.teatcherAssiment + "," + this.classRoom;
 
-        String st="";
-        for(Student student :students ){
-            st+=student.getUniversityId()+";";
+    public void csvToArrays( String idStudent , String topicLecture){
+        String [] idStudentsarray = idStudent.split(";");
+
+        for (String ss: idStudentsarray){
+
+            Student student =DataModel.getStudentById(ss);
+            this.addStudent(student);
+
+
+
         }
-        return toString;
+        for (String st : topicLecture.split(";")){
+            addLecture(DataModel.getLectureBytopic(st));
+        }
+    }
+
+
+
+    public String getTeatcherAssiment() {
+        return teatcherAssiment;
+    }
+
+    public String toStringCsvCourse() {
+
+        String toString =  this.courseName + "," + this.discribtion + "," + this.textbook + "," + this.instructor + "," + this.teatcherAssiment + "," + this.classRoom;
+        String stString="";
+for (Student student : students){
+    stString+=student.getUniversityId()+";";
+}
+toString+=","+stString;
+
+
+        String stLecture="";
+        for (Lecture lecture : lectures){
+
+            stLecture+=lecture.getTopic()+";";
+        }
+        toString+=","+stLecture;
+
+
+return toString;
      }
+
     public String getCourseName() {
         return courseName;
     }
@@ -51,11 +91,11 @@ private  String discribtion;
         return classRoom;
     }
 
-    public List<Lecture> getLectures() {
+    public ArrayList<Lecture> getLectures() {
         return lectures;
     }
 
-    public void addLecture(Lecture lecture) {
+    public void addLecture(Lecture  lecture) {
         lectures.add(lecture);
     }
     public void removeLecture(Lecture lecture) {
@@ -67,8 +107,9 @@ private  String discribtion;
     }
     public void addStudent (Student student){
         students.add(student);
+
     }
-    public void removeStudent(Student  student) {
+    public void removeStudent(String  student) {
         students.remove(student);
     }
 

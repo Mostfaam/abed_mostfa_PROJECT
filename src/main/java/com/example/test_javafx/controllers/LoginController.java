@@ -7,14 +7,18 @@ import com.example.test_javafx.models.Teatcher;
 import com.example.test_javafx.models.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Dialog;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
-public class LoginController {
+public class LoginController  {
     @FXML
     public AnchorPane rootPane;
     public TextField userName;
@@ -35,6 +39,11 @@ public class LoginController {
                     alert.setTitle("eroor");
                     alert.setContentText("please contact admin to add you to teatchers");
                     alert.showAndWait();
+
+
+
+                    // Show the Dialog
+
                 }
             } else {
                 if (dataModel.isManeger(userName.getText(),pass.getText(), ADMIN)) {
@@ -50,8 +59,11 @@ public class LoginController {
                 if(dataModel.varUserName(userName.getText())&&dataModel.varPassword(pass.getText())){
                     dataModel.wohTeatcher(userName.getText());
                     navigation.navigateTo(rootPane, navigation.TEACHER_FXML);
+                    dataModel.setion(userName.getText());
 
                 }
             }
         }
-    }
+
+
+}

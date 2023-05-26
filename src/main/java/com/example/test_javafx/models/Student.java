@@ -1,6 +1,7 @@
 package com.example.test_javafx.models;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Student implements Serializable {
     private String name;
@@ -8,6 +9,7 @@ public class Student implements Serializable {
     private String phoneNumber;
     private String residenceArea;
     private float gpa;
+    private ArrayList<Course> courses =new ArrayList<Course>();
 
     public Student(String name, String universityId, String phoneNumber, String residenceArea, float gpa) {
         this.name = name;
@@ -17,6 +19,13 @@ public class Student implements Serializable {
         this.gpa = gpa;
     }
 
+    public Student() {
+
+    }
+
+    public void addCourse(Course course){
+        courses.add(course);
+    }
     public String getName() {
         return name;
     }
@@ -48,7 +57,7 @@ public class Student implements Serializable {
 
     @Override
     public String toString() {
-        return  name + ", "+ universityId + ", "  +phoneNumber + ", " + residenceArea + ", "+ gpa ;
+        return  name + ","+ universityId + ","  +phoneNumber + "," + residenceArea + ","+ gpa ;
 
     }
 }
