@@ -62,7 +62,7 @@
             <Font name="Times New Roman" size="18.0" />
          </font>
       </Button>
-      <TableView fx:id="table" layoutX="238.0" layoutY="90.0" prefHeight="413.0" prefWidth="560.0">
+      <TableView fx:id="table" editable="true" layoutX="238.0" layoutY="90.0" prefHeight="413.0" prefWidth="560.0">
          <columns>
             <TableColumn fx:id="nameTa" minWidth="30.0" prefWidth="169.0" text="name" />
             <TableColumn fx:id="universityId" minWidth="30.0" prefWidth="151.0" text="ID" />
