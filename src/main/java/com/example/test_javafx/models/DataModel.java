@@ -145,6 +145,9 @@ public class DataModel {
                  String s = scanner.nextLine();
                  if( scanner.hasNextLine()) {
                      login ="views/teacher.fxml";
+                     String userNameEnterd = scanner.nextLine();
+                     whoTeatcher= (userNameEnterd);
+
                  }
                  else login= "views/login.fxml";
 

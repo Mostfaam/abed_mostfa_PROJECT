@@ -22,7 +22,7 @@ public class Navigation {
 
     public void navigateTo(Parent rootPane, String path) {
         try {
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(path)));
+                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(path)));
             rootPane.getScene().setRoot(root);
         } catch (IOException e) {
             e.printStackTrace();

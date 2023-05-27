@@ -1,6 +1,7 @@
 package com.example.test_javafx.models;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class Course {
@@ -110,7 +111,14 @@ return toString;
 
     }
     public void removeStudent(String  student) {
-        students.remove(student);
+        Iterator<Student> iterator =getStudents().iterator();
+        while (iterator.hasNext()) {
+            Student studentRemoved = iterator.next();
+            if (studentRemoved.getUniversityId().equals(student)) {
+                iterator.remove();
+                break;
+            }
+        }
     }
 
 

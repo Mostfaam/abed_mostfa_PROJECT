@@ -86,6 +86,8 @@ ArrayList<String> courseforTeatcher = new ArrayList<String>();
        name.setCellValueFactory(new PropertyValueFactory<>("Name"));
         universityId.setCellValueFactory(new PropertyValueFactory<>("universityId"));
         phoneNumber.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
+
+
         table.setItems(FXCollections.observableArrayList(model.getCourseByname(namecourseSelected).getStudents()));
         listCourseInAttend.getItems().addAll(courseforTeatcher);
 
