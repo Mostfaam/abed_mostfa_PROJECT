@@ -115,9 +115,11 @@ public class DataModel {
                        teatcher.csvToArrays(strings[4]);
 
                     }
+
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
+
             }
 
         }

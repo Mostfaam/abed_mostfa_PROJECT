@@ -1,6 +1,7 @@
     package com.example.test_javafx.controllers;
 
 import com.example.test_javafx.Navigation;
+import com.example.test_javafx.models.Course;
 import com.example.test_javafx.models.DataModel;
 import com.example.test_javafx.models.Teatcher;
 import javafx.event.ActionEvent;
@@ -64,11 +65,14 @@ private String nameTemp;
     }
     }
     public void editTecher(ActionEvent actionEvent) {
+        System.out.println(teEditUserName.getText());
+     ArrayList<Course> coursesForTeatcher =   model.getTeatcherByUsername(teEditUserName.getText()).getCourse();
         model.deleteTeatcherByUsername(teEditUserName.getText());
-
-
         Teatcher teatcher = new Teatcher(teEditName.getText(),teEditUserName.getText(),teEditPass.getText(),teEditPhone.getText());
-    model.addTeatcher(teatcher);
+       for(Course course :coursesForTeatcher){
+        teatcher.csvToArrays(course.getCourseName()+";");
+       }
+        model.addTeatcher(teatcher);
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText("The teatcher edited");
         alert.setTitle("Done");
