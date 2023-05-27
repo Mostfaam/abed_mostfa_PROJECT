@@ -50,7 +50,7 @@ public class StudentController implements Initializable {
     TableColumn phoneNumber;
 
     public void onAdd() {
-        if(getCourseNameSelected().isEmpty()){
+        if(comboBoxForCourse.getSelectionModel().getSelectedIndex()==-1){
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setHeaderText("the course is empty");
             alert.setTitle("Done");
