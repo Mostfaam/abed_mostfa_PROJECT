@@ -1,5 +1,8 @@
 package com.example.test_javafx.controllers;
-
+import jxl.Cell;
+import jxl.Sheet;
+import jxl.Workbook;
+import jxl.read.biff.BiffException;
 import com.example.test_javafx.Navigation;
 import com.example.test_javafx.models.Course;
 import com.example.test_javafx.models.DataModel;
@@ -17,13 +20,17 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
 public class attendsController implements Initializable {
+    private String path;
     @FXML
     public TableView<Student> table;
     @FXML
@@ -65,6 +72,8 @@ public class attendsController implements Initializable {
     Button creatLecture;
     @FXML
     TextField classRoom;
+    @FXML
+AnchorPane anchorPaneForLecture;
 
     String nameSelected;
     String lectureSelected;
@@ -185,6 +194,10 @@ table.setVisible(true);
     }
 
     public void onLecturt(ActionEvent event) {
+        anchorPaneForAttend.setVisible(false);
+        anchorPaneForLecture.setVisible(true);
+
+
     }
 
     public ArrayList<String> getAttend() {
@@ -222,5 +235,22 @@ table.setVisible(true);
     public void getStudentName(MouseEvent mouseEvent) {
         studentSelectedIntable = table.getSelectionModel().getSelectedItem();
 
+    }
+
+    public void creatTopic(ActionEvent event) {
+        Lecture lecture = new Lecture(topic.getText(),classRoom.getText(),model.getWhoTeatcher(),namecourseSelected);
+
+    }
+
+    public void importExcel(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        File file = fileChooser.showOpenDialog(null);
+        path = file.toURI().toString();
+        try {
+            Workbook workbook = Workbook.getWorkbook(new File(path));
+            Sheet sheet = workbook.getSheet(0); // تحديد ورقة المصنف التي ترغب في قراءتها
+        } catch (IOException | BiffException e) {
+            e.printStackTrace();
+        }
     }
 }

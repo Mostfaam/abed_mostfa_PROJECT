@@ -147,13 +147,7 @@ return toString;
         }
     }
 
-    public ArrayList<String>  getTopic() {
-        ArrayList<String> topic = new ArrayList<String>();
-        for (Lecture l : lectures) {
-            topic.add(l.getTopic());
-        }
-        return topic;
-    }
+
 
     // Other methods as needed
 }

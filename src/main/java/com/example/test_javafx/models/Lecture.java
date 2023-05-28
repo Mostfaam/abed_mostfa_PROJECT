@@ -1,7 +1,9 @@
 package com.example.test_javafx.models;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Lecture {
     private String topic;
@@ -47,9 +49,7 @@ public String getAttend(Student student){
 
 }
 
-    public Lecture() {
 
-    }
 
     @Override
     public String toString() {

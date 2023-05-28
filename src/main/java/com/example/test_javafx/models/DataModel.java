@@ -322,7 +322,7 @@ public class DataModel {
                 return  lectures.get(i);
             }
         }
-        return new Lecture() ;
+        return  null;
     }
     public void saveLectures() {
         try (PrintWriter pw = new PrintWriter("lectuers.csv")) {

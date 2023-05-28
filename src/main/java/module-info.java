@@ -3,6 +3,8 @@ module com.example.test_javafx {
     requires javafx.fxml;
     requires java.naming;
 
+    requires jxl;
+
 
     exports com.example.test_javafx;
     opens com.example.test_javafx to javafx.fxml;
