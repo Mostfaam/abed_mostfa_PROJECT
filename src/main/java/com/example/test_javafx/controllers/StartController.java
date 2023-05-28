@@ -20,7 +20,7 @@ public class StartController {
 
 
     public void onReports(ActionEvent actionEvent) {
-
+        navigation.navigateTo(rootPane,navigation.REPORT);
     }
 
     public void onLectuer(ActionEvent actionEvent) {

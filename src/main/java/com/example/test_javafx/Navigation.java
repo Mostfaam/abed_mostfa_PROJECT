@@ -8,7 +8,7 @@ import java.util.Objects;
 
 public class Navigation {
     public static final String ATTEND ="views/attend.fxml" ;
-    public static final String CREAT_LECTUER ="views/creatLecture.fxml" ;
+    public static final String CREAT_LECTUER ="views/lectuer.fxml" ;
     public final String MANGER_FXML = "views/Admin.fxml";
     public final String TEACHER_FXML = "views/teacher.fxml";
     public final String STUDENT_FXML = "views/Student.fxml";
@@ -18,6 +18,8 @@ public class Navigation {
     public final String EDIT_TEACHER = "views/editTeacher.fxml";
     public final String CREAT_COURS = "views/creatCours.fxml";
     public final String EDIT_COURS = "views/editCours.fxml";
+    public final String REPORT = "views/report.fxml";
+
 
 
     public void navigateTo(Parent rootPane, String path) {

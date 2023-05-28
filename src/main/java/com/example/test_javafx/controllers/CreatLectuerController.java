@@ -35,12 +35,19 @@ public class CreatLectuerController implements Initializable {
     @FXML
     TextField coursName;
     @FXML
-    private ListView<String> list;
+    private ListView<String> listOfLectuer;
+    @FXML
+    private ComboBox<String> leCource ;
+    @FXML
+    public Button creatL;
+    @FXML
+    public Button saveEdit;
 
     @FXML
     Navigation navigation = new Navigation();
     DataModel dataModel =new DataModel();
     String courseNameSelected;
+    private int in ;
     public void back(ActionEvent actionEvent) {
         navigation.navigateTo(anchorPane,navigation.TEACHER_FXML);
 
@@ -52,11 +59,11 @@ public class CreatLectuerController implements Initializable {
             courseforTeatcher.add(s.getCourseName());
 
         }
-    list.getItems().addAll(courseforTeatcher);
-    list.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+        leCource.getItems().addAll(courseforTeatcher);
+        leCource.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
         @Override
         public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
-            courseNameSelected=list.getSelectionModel().getSelectedItem();
+            courseNameSelected=leCource.getSelectionModel().getSelectedItem();
         }
     });
     }
@@ -67,5 +74,59 @@ public class CreatLectuerController implements Initializable {
            dataModel.getLecture().add(lecture);
            dataModel.getCourseByname(courseNameSelected).addLecture(lecture);
            dataModel.saveLectures();
+    }
+    public void delitLectuer(ActionEvent actionEvent) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        if (listOfLectuer.getSelectionModel().isEmpty()) {
+            alert.setHeaderText("you are not select a lecture");
+            alert.setTitle("eroor");
+            alert.setContentText("select a lecture");
+            alert.showAndWait();
+        } else {
+            ArrayList<Integer> selectedIndices = new ArrayList<>(listOfLectuer.getSelectionModel().getSelectedIndices());
+            for (int index : selectedIndices) {
+                String lecture = listOfLectuer.getItems().get(index);
+                listOfLectuer.getItems().remove(lecture);
+                dataModel.getCourseByname(getCourseNameSelected()).removeLecture(dataModel.getLectureBytopic(lecture));
+            }}
+
+
+    }
+
+    public void editLectuer(ActionEvent actionEvent) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        if (listOfLectuer.getSelectionModel().getSelectedIndex()==-1) {
+            alert.setHeaderText("you are not select a lecture");
+            alert.setTitle("eroor");
+            alert.setContentText("select a lecture");
+            alert.showAndWait();
+        } else{
+            ArrayList<Integer> selectedIndices = new ArrayList<>(listOfLectuer.getSelectionModel().getSelectedIndices());
+            for (int in : selectedIndices) {
+                String lecture = listOfLectuer.getItems().get(in);
+                topic.setText(lecture);
+                classRoom.setText(dataModel.getLectureBytopic(lecture).getClassRoom());
+                creatL.setVisible(false);
+                saveEdit.setVisible(true);
+            }
+        }
+    }
+    public void saveEdit(ActionEvent actionEvent) {
+        String tempTopic = topic.getText();
+        String tempClassRoom = classRoom.getText();
+        String lecture = listOfLectuer.getItems().get(in);
+        listOfLectuer.getItems().removeAll(dataModel.getCourseByname(getCourseNameSelected()).getTopic());
+        dataModel.getCourseByname(getCourseNameSelected()).removeLecture(dataModel.getLectureBytopic(lecture));
+        dataModel.getLecture().remove(dataModel.getLectureBytopic(lecture));
+        dataModel.getCourseByname(getCourseNameSelected()).addLecture(new Lecture(tempTopic,tempClassRoom,dataModel.getWhoTeatcher(),getCourseNameSelected()));
+        listOfLectuer.getItems().addAll(dataModel.getCourseByname(getCourseNameSelected()).getTopic());
+
+        topic.setText("");
+        classRoom.setText("");
+        saveEdit.setVisible(false);
+        creatL.setVisible(true);
+    }
+    private String getCourseNameSelected() {
+        return  leCource.getValue();
     }
 }

@@ -84,7 +84,7 @@
             </Button>
          </children>
       </VBox>
-      <VBox fx:id="vBox2" layoutX="39.0" layoutY="171.0" prefHeight="159.0" prefWidth="202.0" visible="true">
+      <VBox fx:id="vBox2" layoutX="271.0" layoutY="184.0" prefHeight="159.0" prefWidth="202.0" visible="true">
          <children>
             <Label text="User Name">
                <font>
