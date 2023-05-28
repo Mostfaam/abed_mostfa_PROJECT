@@ -65,7 +65,7 @@ private String nameTemp;
     }
     }
     public void editTecher(ActionEvent actionEvent) {
-        System.out.println(teEditUserName.getText());
+
      ArrayList<Course> coursesForTeatcher =   model.getTeatcherByUsername(teEditUserName.getText()).getCourse();
         model.deleteTeatcherByUsername(teEditUserName.getText());
         Teatcher teatcher = new Teatcher(teEditName.getText(),teEditUserName.getText(),teEditPass.getText(),teEditPhone.getText());

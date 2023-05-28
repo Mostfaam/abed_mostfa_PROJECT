@@ -27,25 +27,38 @@ private  String discribtion;
 
         }
 
+    public String getClassRoom() {
+        return classRoom;
+    }
+
+    public String getDiscribtion() {
+        return discribtion;
+    }
+
     public Course() {
 
     }
 
-    public void csvToArrays( String idStudent , String topicLecture){
+    public void csvToArrayStudent( String idStudent ){
         String [] idStudentsarray = idStudent.split(";");
 
         for (String ss: idStudentsarray){
 
             Student student =DataModel.getStudentById(ss);
             this.addStudent(student);
-
-
+            student.addCourse(this);
 
         }
+
+    }
+
+    public void csvToArraysLecture(  String topicLecture ){
         for (String st : topicLecture.split(";")){
             addLecture(DataModel.getLectureBytopic(st));
         }
-    }
+
+        }
+
 
 
 
@@ -59,6 +72,7 @@ private  String discribtion;
         String stString="";
 for (Student student : students){
     stString+=student.getUniversityId()+";";
+    //1202;125;56666
 }
 toString+=","+stString;
 
@@ -67,9 +81,10 @@ toString+=","+stString;
         for (Lecture lecture : lectures){
 
             stLecture+=lecture.getTopic()+";";
+            //oop;oop2;
         }
         toString+=","+stLecture;
-
+//user,name,classroom, 1202;125;56666,oop;oop2;
 
 return toString;
      }
@@ -107,8 +122,19 @@ return toString;
         return students;
     }
     public void addStudent (Student student){
-        students.add(student);
+        if(!isStudentExist(student)) {
+            students.add(student);
+            student.addCourse(this);
+        }
+    }
 
+    public boolean isStudentExist(Student student){
+        for (Student student1:students){
+            if(student1==student){
+                return true;
+            }
+        }
+        return false;
     }
     public void removeStudent(String  student) {
         Iterator<Student> iterator =getStudents().iterator();

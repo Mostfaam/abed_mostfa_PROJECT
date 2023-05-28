@@ -32,7 +32,10 @@ public class DataModel {
                     while (scanner.hasNext()) {
 
                          strings = scanner.nextLine().split(",");
-                        students.add(new Student(strings[0], strings[1], strings[2], strings[3], Float.parseFloat(strings[4])));
+                      Student student =  new Student(strings[0], strings[1], strings[2], strings[3], Float.parseFloat(strings[4]));
+                        students.add(student);
+
+
                     }
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
@@ -58,8 +61,16 @@ public class DataModel {
 
                     while (scanner.hasNext()) {
                         strings = scanner.nextLine().split(",");
-                        lectures.add(new Lecture(strings[0], strings[1], strings[2], strings[3]));
+                         Lecture lecture = new Lecture(strings[0], strings[1], strings[2], strings[3]);
 
+                        lectures.add(lecture);
+                        if(strings.length==5) {
+                            lecture.csvtoDate(strings[4]);
+                        }
+                        if (strings.length==6){
+                            lecture.csvToArray(strings[5]);
+
+                        }
                     }
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
@@ -80,7 +91,10 @@ public class DataModel {
 
                        Course course=new Course(strings[0], strings[1], strings[2], strings[3], strings[4], strings[5]);
                         courses.add(course);
-                        course.csvToArrays(strings[6],strings[7]);
+                        if(strings.length==8) {
+                            course.csvToArrayStudent(strings[6]);
+                            course.csvToArraysLecture(strings[7]);
+                        }
 
                     }
 
@@ -112,8 +126,9 @@ public class DataModel {
                        Teatcher teatcher= new Teatcher(strings[0], strings[1], strings[2], strings[3]);
 
                         teatchers.add(teatcher);
-                       teatcher.csvToArrays(strings[4]);
-
+                        if(strings.length==5) {
+                            teatcher.csvToArrays(strings[4]);
+                        }
                     }
 
                 } catch (FileNotFoundException e) {
@@ -263,7 +278,9 @@ public class DataModel {
         courses.remove(course);
     }
 
-
+    public static void deleteCourseByName(String name) {
+     courses.remove(getCourseByname(name));
+    }
     public static Course getCourseByname(String courseName) {
 
         for (int i = 0; i < courses.size(); i++) {
@@ -273,7 +290,7 @@ public class DataModel {
 
             }
         }
-    return new Course();}
+    return null;}
 
 
     public void saveCourse() {
@@ -353,7 +370,7 @@ public void addStudent(Student student) {
               return  students.get(i);
             }
         }
-        return new Student();
+        return null;
     }
 
     public ArrayList<Student> getStudents() {

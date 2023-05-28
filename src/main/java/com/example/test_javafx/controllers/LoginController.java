@@ -39,7 +39,8 @@ public class LoginController  {
                     alert.setTitle("eroor");
                     alert.setContentText("please contact admin to add you to teatchers");
                     alert.showAndWait();
-
+                    System.out.println();
+                    System.out.println(userName.getText());
 
 
                     // Show the Dialog

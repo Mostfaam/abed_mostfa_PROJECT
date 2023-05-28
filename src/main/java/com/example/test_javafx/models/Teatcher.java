@@ -12,33 +12,40 @@ public class Teatcher extends User {
     }
 
     //name,username,password,phone,course
-    public Teatcher(String name ,String username, String password, String phone) {
+    public Teatcher(String name, String username, String password, String phone) {
         super(username, password);
-        this.phone=phone;
-        this.name=name;
+        this.phone = phone;
+        this.name = name;
     }
 
     public String toStringCsv() {
-         String toString = this.name+","+this.getUsername()+","+this.getPassword()+","+this.phone;
-        String stString="";
-        for (Course course1 : course){
-            stString+=course1.getCourseName()+";";
+        String toString = this.name + "," + this.getUsername() + "," + this.getPassword() + "," + this.phone;
+        String stString = "";
+
+        if (course.isEmpty()) {
+            return toString;
+        }    else {
+        for (Course course1 : course) {
+
+                stString += course1.getCourseName() + ";";
+
+            }
+        toString+=","+stString;
         }
-       return toString+=","+stString;
-    }
-public void csvToArrays(String courseName){
-        String [] courseName1 = courseName.split(";");
 
-
-
-
-    for (String ss: courseName1){
-
-        Course course =DataModel.getCourseByname(ss);
-        this.addCourse(course);
+        return toString;
     }
 
-}
+    public void csvToArrays(String courseName) {
+        String[] courseName1 = courseName.split(";");
+        for (String ss : courseName1) {
+
+            Course course = DataModel.getCourseByname(ss);
+            this.addCourse(course);
+        }
+
+    }
+
     public ArrayList<Course> getCourse() {
         return course;
     }
@@ -60,7 +67,7 @@ public void csvToArrays(String courseName){
     }
 
     public void addCourse(Course course) {
-        this.course.add(course) ;
+        this.course.add(course);
     }
 
     public void recordAttendance(String studentId, boolean present) {

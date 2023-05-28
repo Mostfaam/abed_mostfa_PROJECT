@@ -57,18 +57,43 @@ public class StudentController implements Initializable {
             alert.setContentText("please select the course");
             alert.showAndWait();
         }
+
         else{
+            boolean isUnieqId = true;
+            boolean isExsist = true;
+            if ((dataModel.getStudentById(id.getText())==null)){
+                dataModel.save_Students();
+                 isExsist = false;
+            }
+
+            for (Student student : dataModel.getStudents()) {
+                if (!isExsist) {
+                    if (id.getText().equals(student.getUniversityId())) {
+                       isUnieqId = false;
+                    }
+                }
+            }
+
+            if(isUnieqId){
         Student student = new Student(name.getText(), id.getText(), phone.getText(), address.getText(), Float.parseFloat(gpa.getText()));
         dataModel.addStudent(student);
         dataModel.getCourseByname(getCourseNameSelected()).addStudent(student);
-        dataModel.save_Students();
+
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText("The student has been added successfully");
         alert.setTitle("Done");
         alert.setContentText("Name: " + name.getText() + ", GPA: " + gpa.getText());
         alert.showAndWait();
-        dataModel.save_Students();
-    }}
+
+    }
+        else {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setHeaderText("the student's id must be unique");
+                alert.setTitle("Done");
+                alert.setContentText("please refill id");
+                alert.showAndWait();
+            }}}
+
 
 
 
@@ -95,11 +120,11 @@ public class StudentController implements Initializable {
         }
         comboBoxForCourse.getItems().addAll(courseforTeatcher);
         comboBoxForCourse.setOnAction(event -> {
-            // الحصول على الـ ArrayList المحدد
+
             String selectedString = comboBoxForCourse.getValue();
 
             nameTa.setCellValueFactory(new PropertyValueFactory<>("name"));
-            universityId.setCellValueFactory(new PropertyValueFactory<>("universityId"));
+                universityId.setCellValueFactory(new PropertyValueFactory<>("universityId"));
             gpaTa.setCellValueFactory(new PropertyValueFactory<>("gpa"));
             phoneNumber.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
 

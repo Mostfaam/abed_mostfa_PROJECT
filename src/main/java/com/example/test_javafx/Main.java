@@ -46,6 +46,7 @@ public class Main extends Application {
                 model.save_Students();
                 model.saveTeatchers();
                 model.saveCourse();
+                model.saveLectures();
             } else if (result.get() == cancel) {
                 event.consume();
             }

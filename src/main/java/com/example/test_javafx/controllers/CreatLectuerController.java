@@ -25,6 +25,7 @@ public class CreatLectuerController implements Initializable {
 
     @FXML
     private AnchorPane anchorPane;
+
     @FXML
     TextField topic;
     @FXML
@@ -44,7 +45,6 @@ public class CreatLectuerController implements Initializable {
         navigation.navigateTo(anchorPane,navigation.TEACHER_FXML);
 
     }
-
 
     public void initialize(URL url, ResourceBundle rb) {
         ArrayList<String> courseforTeatcher = new ArrayList<String>();

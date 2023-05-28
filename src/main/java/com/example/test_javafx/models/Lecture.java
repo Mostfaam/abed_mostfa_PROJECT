@@ -7,12 +7,24 @@ import java.util.List;
 
 public class Lecture {
     private String topic;
+
+    public String getIsStudentAttend() {
+        return isStudentAttend;
+    }
+
+    public void setIsStudentAttend(String isStudentAttend) {
+        this.isStudentAttend = isStudentAttend;
+    }
+
+    private String isStudentAttend;
+
     private String classRoom;
     private Date dateTime = new Date();
-    private ArrayList<String> studentsAttendance;
+    private ArrayList<Student> studentsAttendance = new ArrayList<Student>();
     private String userName;
     private String coursName;
- String date ;
+    private  String date ;
+    private  String attend ;
 
     public Lecture(String topic, String classRoom,String userName,String coursName) {
         this.topic = topic;
@@ -20,8 +32,22 @@ public class Lecture {
         this.studentsAttendance = new ArrayList<>();
         this.coursName = coursName;
         this.userName=userName;
-        date = dateTime.toString();
+        this.date = dateTime.toString();
+
     }
+
+public String getAttend(Student student){
+        for(Student student1:studentsAttendance){
+        if (student==(student1)){
+        return "yes";
+        }
+
+        }
+        return "no";
+
+
+
+}
 
     public Lecture() {
 
@@ -30,9 +56,36 @@ public class Lecture {
     @Override
     public String toString() {
 //        topic,classRoom,userName,couseName
+        String toString = this.topic + "," + this.classRoom + "," + this.userName + "," + this.coursName+","+date;
+        String sta = "";
+        if (studentsAttendance.isEmpty()){
+            return toString;
+        }
+        else {
+        for (Student s : studentsAttendance) {
+            sta += s.getUniversityId() + ";";
+        }
+        toString+=","+sta;
+        }
+    return toString;
+    }
+    public void csvtoDate(String date){
+        this.date = date ;
 
-        return this.topic+","+ this.classRoom+","+this.userName+","+this.coursName;
-          }
+    }
+    public void csvToArray(String id){
+        String[] idl = id.split(";");
+
+
+
+        for (String ss : idl) {
+
+            Student student = DataModel.getStudentById(ss);
+            this.addStudentAttendance(student);
+        }
+
+
+    }
 
     public String getUserName() {
         return userName;
@@ -50,15 +103,15 @@ public class Lecture {
         return classRoom;
     }
 
-    public Date getDateTime() {
-        return dateTime;
+    public String getDate() {
+        return date;
     }
 
-    public ArrayList<String> getStudentsAttendance() {
+    public ArrayList<Student> getStudentsAttendance() {
         return studentsAttendance;
     }
 
-    public void addStudentAttendance(String student) {
+    public void addStudentAttendance(Student student) {
         studentsAttendance.add(student);
     }
 

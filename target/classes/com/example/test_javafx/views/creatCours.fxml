@@ -12,7 +12,7 @@
 <AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.test_javafx.controllers.CreatCoursController">
     <children>
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="LIGHTSKYBLUE" height="92.0" stroke="BLACK" strokeType="INSIDE" width="800.0" />
-        <Label layoutX="39.0" layoutY="24.0" prefHeight="50.0" prefWidth="333.0" text="Creat Teacher" textFill="#20303b">
+        <Label layoutX="39.0" layoutY="24.0" prefHeight="50.0" prefWidth="333.0" text="Creat Course" textFill="#20303b">
             <font>
                 <Font name="Consolas" size="41.0" />
             </font>

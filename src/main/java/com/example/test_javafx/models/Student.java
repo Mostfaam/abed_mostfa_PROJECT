@@ -19,8 +19,9 @@ public class Student implements Serializable {
         this.gpa = gpa;
     }
 
-    public Student() {
 
+    public ArrayList<Course> getCourses() {
+        return courses;
     }
 
     public void addCourse(Course course){
@@ -57,7 +58,20 @@ public class Student implements Serializable {
 
     @Override
     public String toString() {
-        return  name + ","+ universityId + ","  +phoneNumber + "," + residenceArea + ","+ gpa ;
+        String toString = name + ","+ universityId + ","  +phoneNumber + "," + residenceArea + ","+ gpa ;
+        String st = "";
+if (courses.isEmpty()){
+    return toString ;
+
+}
+else {
+    for(Course course : courses){
+        st+=course.getCourseName()+";";
 
     }
+    toString+=","+st;
 }
+    return  toString;}
+
+
+    }
